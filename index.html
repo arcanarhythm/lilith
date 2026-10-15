@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#170e13">
+  <meta name="description" content="LILITH — персональное погружение в твой теневой архетип через астрологию и тело.">
+  <title>LILITH — персональное погружение</title>
+  <style>
+    :root {
+      --bg: #170e13;
+      --bg-soft: #21141c;
+      --panel: #281923;
+      --text: #f4e9ec;
+      --muted: #c0aab3;
+      --wine: #8d294d;
+      --wine-light: #bd5978;
+      --line: rgba(239, 206, 218, .19);
+      --gold: #d8b27c;
+      --max: 920px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background:
+        radial-gradient(ellipse at 50% -12%, rgba(133, 35, 70, .34), transparent 48%),
+        var(--bg);
+      color: var(--text);
+      font-family: Georgia, "Times New Roman", serif;
+      line-height: 1.65;
+      font-size: 17px;
+    }
+    a { color: inherit; }
+    .wrap { width: min(var(--max), calc(100% - 38px)); margin: 0 auto; }
+    .topline {
+      padding: 18px 0;
+      border-bottom: 1px solid var(--line);
+      color: var(--muted);
+      font: 11px/1.4 Arial, sans-serif;
+      letter-spacing: .23em;
+      text-transform: uppercase;
+      display: flex; justify-content: space-between; gap: 16px;
+    }
+    .hero { text-align: center; padding: 68px 0 56px; }
+    .sigil {
+      width: 76px; height: 76px; margin: 0 auto 24px;
+      border: 1px solid rgba(216,178,124,.68); border-radius: 50%;
+      display: grid; place-items: center; color: var(--gold);
+      font-size: 42px; line-height: 1;
+      box-shadow: 0 0 50px rgba(141,41,77,.22), inset 0 0 28px rgba(141,41,77,.14);
+    }
+    .eyebrow {
+      color: var(--gold); text-transform: uppercase; letter-spacing: .22em;
+      font: 11px/1.6 Arial, sans-serif; margin-bottom: 12px;
+    }
+    h1 {
+      font-size: clamp(58px, 12vw, 112px); letter-spacing: .12em;
+      font-weight: 400; line-height: .98; margin: 0 0 25px;
+      padding-left: .12em;
+    }
+    h2 { font-size: clamp(27px, 5vw, 40px); line-height: 1.16; font-weight: 400; margin: 0 0 22px; }
+    h3 { font-weight: 400; font-size: clamp(22px, 4vw, 29px); line-height: 1.25; margin: 0 0 12px; }
+    p { margin: 0 0 15px; }
+    .hero-lead { max-width: 690px; margin: 0 auto 20px; font-size: clamp(20px, 3.8vw, 26px); line-height: 1.42; }
+    .hero-copy { max-width: 650px; margin: 0 auto; color: var(--muted); }
+    .hero-copy p { margin: 0 0 12px; }
+    .accent { color: #e6b5c5; }
+    .gold { color: var(--gold); }
+    .cta {
+      display: inline-flex; align-items: center; justify-content: center;
+      min-height: 54px; padding: 14px 27px; margin-top: 23px;
+      border: 1px solid var(--wine-light); background: var(--wine);
+      color: #fff7fa; text-decoration: none; text-transform: uppercase;
+      letter-spacing: .12em; font: 12px/1.5 Arial, sans-serif;
+      transition: .2s ease; cursor: pointer;
+    }
+    .cta:hover { background: #a6385f; transform: translateY(-2px); }
+    .divider { width: 58px; height: 1px; background: var(--gold); opacity: .7; margin: 0 auto; }
+    .intro { padding: 42px 0 56px; text-align: center; }
+    .intro p { max-width: 690px; margin: 0 auto 15px; }
+    .section-label {
+      font: 11px/1.5 Arial, sans-serif; letter-spacing: .22em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 12px;
+    }
+    .program { padding: 30px 0 44px; }
+    .program-heading { text-align: center; margin-bottom: 29px; }
+    .program-heading p { color: var(--muted); }
+    .stage {
+      position: relative; padding: 25px 25px 24px; margin: 0 0 13px;
+      background: linear-gradient(110deg, rgba(55,29,43,.78), rgba(31,18,26,.9));
+      border: 1px solid var(--line);
+    }
+    .stage-top { display: flex; align-items: flex-start; gap: 18px; }
+    .number {
+      flex: 0 0 43px; height: 43px; border: 1px solid rgba(216,178,124,.58);
+      border-radius: 50%; display: grid; place-items: center;
+      color: var(--gold); font: 12px Arial, sans-serif; margin-top: 2px;
+    }
+    .stage-title { flex: 1; }
+    .kind { color: var(--muted); font: 11px/1.5 Arial, sans-serif; letter-spacing: .12em; text-transform: uppercase; margin-top: 4px; }
+    .stage-body { padding-left: 61px; }
+    .stage-body p { color: #e2d3d9; }
+    .result { border-top: 1px solid var(--line); padding-top: 13px; margin-top: 17px; color: var(--muted); }
+    .result strong { color: var(--gold); font-weight: 400; }
+    .buy-section { padding: 50px 0 62px; text-align: center; }
+    .buy-card {
+      padding: 34px 24px; border: 1px solid rgba(216,178,124,.4);
+      background: radial-gradient(ellipse at 50% 0%, rgba(141,41,77,.24), transparent 65%), var(--bg-soft);
+    }
+    .price-caption { color: var(--muted); font: 11px Arial, sans-serif; letter-spacing: .2em; text-transform: uppercase; }
+    .price { font-size: clamp(35px, 8vw, 54px); margin: 8px 0 8px; }
+    .price-note { color: var(--muted); font-size: 14px; }
+    .buy-copy { max-width: 600px; margin: 18px auto 0; color: var(--muted); }
+    .steps-nav { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; margin: 26px 0 0; }
+    .steps-nav a {
+      border: 1px solid var(--line); color: var(--muted); text-decoration: none;
+      font: 10px Arial, sans-serif; letter-spacing: .08em; padding: 8px 11px;
+    }
+    .steps-nav a:hover { color: var(--text); border-color: var(--wine-light); }
+    .footer { border-top: 1px solid var(--line); padding: 23px 0 30px; color: #8e7882; font: 11px/1.8 Arial, sans-serif; text-align: center; }
+    .footer a { color: #c5a9b5; }
+    .fineprint { max-width: 660px; margin: 22px auto 0; font-size: 12px; color: #8e7882; }
+    @media (max-width: 600px) {
+      body { font-size: 16px; }
+      .wrap { width: min(100% - 28px, var(--max)); }
+      .topline { font-size: 9px; letter-spacing: .14em; }
+      .hero { padding: 49px 0 42px; }
+      .stage { padding: 19px 16px 20px; }
+      .stage-top { gap: 12px; }
+      .number { flex-basis: 36px; height: 36px; font-size: 11px; }
+      .stage-body { padding-left: 48px; }
+      .stage-body p { margin-bottom: 12px; }
+      .buy-card { padding: 29px 17px; }
+      .cta { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <div class="topline wrap">
+    <span>Персональное погружение</span>
+    <span>Астрология · Тело · Тень</span>
+  </div>
+
+  <main>
+    <section class="hero wrap">
+      <div class="sigil" aria-hidden="true">☽</div>
+      <div class="eyebrow">Твоя тень. Твоя сила.</div>
+      <h1>LILITH</h1>
+      <p class="hero-lead">Ты чувствуешь свой потенциал.<br><span class="accent">Так почему ты его не проживаешь?</span></p>
+      <div class="hero-copy">
+        <p>Ты знаешь, что достойна лучшего. Других отношений. Более мощной реализации. Власти, любви, свободы.</p>
+        <p>Ты читаешь разборы, узнаёшь себя и думаешь: «Да, это я».</p>
+        <p>Но где всё это в твоей жизни? Наступит когда-нибудь потом?</p>
+        <p>Я скажу так: ты уже свободна. Есть часть тебя, которая знает, как это сделать.</p>
+        <p class="accent">Тебе нужно не просто прочитать о себе. Тебе нужно это почувствовать.</p>
+      </div>
+      <a class="cta" href="#program">Погрузиться в LILITH ↓</a>
+    </section>
+
+    <div class="divider"></div>
+
+    <section class="intro wrap">
+      <div class="section-label">Не очередной разбор</div>
+      <h2>Лучше один раз прожить,<br><span class="accent">чем сто раз прочитать</span></h2>
+      <p>LILITH — это индивидуальная работа с твоим теневым архетипом по натальной карте.</p>
+      <p>Я изучу твою Лилит и создам персональные аудиопрактики и задания. Ты будешь исследовать свои желания, замечать привычные ограничения и пробовать проживать качества, которые привыкла прятать.</p>
+      <p class="gold">Не готовый курс для всех. Твоё личное погружение.</p>
+    </section>
+
+    <section class="program wrap" id="program">
+      <div class="program-heading">
+        <div class="section-label">Твой путь</div>
+        <h2>Четыре встречи с собой</h2>
+        <p>Листай этапы своего погружения</p>
+        <nav class="steps-nav" aria-label="Навигация по этапам">
+          <a href="#stage1">01 · Знакомство</a>
+          <a href="#stage2">02 · Голод</a>
+          <a href="#stage3">03 · Искушение</a>
+          <a href="#stage4">04 · Магнит</a>
+        </nav>
+      </div>
+
+      <article class="stage" id="stage1">
+        <div class="stage-top">
+          <div class="number">01</div>
+          <div class="stage-title">
+            <h3>ЗНАКОМСТВО С ЛИЛИТ</h3>
+            <div class="kind">Аудиопрактика · Персональный рассказ</div>
+          </div>
+        </div>
+        <div class="stage-body">
+          <p>Я изучу характер твоего теневого архетипа Лилит по знаку, дому и управителю и напишу рассказ от её имени.</p>
+          <p>Ты послушаешь его и проживёшь телом. Попробуешь услышать ту часть себя, которую привыкла не замечать или держать под контролем.</p>
+          <div class="result"><strong>Для чего:</strong> познакомиться со своей Лилит, увидеть её характер и по-новому взглянуть на качества, которые ты привыкла прятать.</div>
+        </div>
+      </article>
+
+      <article class="stage" id="stage2">
+        <div class="stage-top">
+          <div class="number">02</div>
+          <div class="stage-title">
+            <h3>ГОЛОД И УДОВОЛЬСТВИЕ</h3>
+            <div class="kind">Телесная аудиопрактика</div>
+          </div>
+        </div>
+        <div class="stage-body">
+          <p>У каждой Лилит свои потребности. Одной нужна власть, другой — свобода, страсть, внимание или право выбирать то, чего она действительно хочет.</p>
+          <p>Ты привыкла прятать этот голод. В практике ты исследуешь его, позволишь себе почувствовать свои желания и познакомишься с удовольствием без привычного осуждения.</p>
+          <div class="result"><strong>Для чего:</strong> лучше понять свои желания, научиться замечать их и исследовать, что ты чувствуешь, когда перестаёшь автоматически себя останавливать.</div>
+        </div>
+      </article>
+
+      <article class="stage" id="stage3">
+        <div class="stage-top">
+          <div class="number">03</div>
+          <div class="stage-title">
+            <h3>ТОЧКИ ИСКУШЕНИЯ</h3>
+            <div class="kind">Тест и персональные задания</div>
+          </div>
+        </div>
+        <div class="stage-body">
+          <p>Где ты проживаешь Лилит в негативе и тормозишь её сильные проявления?</p>
+          <p>Когда ты подавляешь свои желания и качества, внутреннее напряжение может проявляться через повторяющиеся реакции и сценарии. С помощью теста и заданий ты исследуешь свои триггеры и ситуации, в которых сама себе не разрешаешь быть собой.</p>
+          <div class="result"><strong>Для чего:</strong> увидеть собственные точки напряжения и понять, с каких привычных реакций можно начать изменения.</div>
+        </div>
+      </article>
+
+      <article class="stage" id="stage4">
+        <div class="stage-top">
+          <div class="number">04</div>
+          <div class="stage-title">
+            <h3>Я МАГНИТ</h3>
+            <div class="kind">Практика-настройка REBORN + задания</div>
+          </div>
+        </div>
+        <div class="stage-body">
+          <p>У твоей Лилит может быть внутренний конфликт. С одной стороны, ты страстно желаешь быть собой. С другой — боишься непринятия.</p>
+          <p>Ты хочешь проявляться, но иногда сама гасишь то, что делает тебя заметной. Практика поможет настроиться на свои энергии, исследовать этот конфликт и попробовать проявляться свободнее.</p>
+          <div class="result"><strong>Для чего:</strong> укрепить контакт с собой, увереннее выражать свои качества и замечать людей, рядом с которыми тебе не нужно притворяться кем-то другим.</div>
+        </div>
+      </article>
+    </section>
+
+    <section class="buy-section wrap" id="order">
+      <div class="buy-card">
+        <div class="section-label">Твоё персональное погружение</div>
+        <h2>Ты уже можешь больше</h2>
+        <p class="price-caption">Стоимость участия</p>
+        <!-- ЗАМЕНИ ЦЕНУ НИЖЕ НА СВОЮ -->
+        <div class="price">Уточнить стоимость</div>
+        <p class="buy-copy">Это индивидуальная работа. Я подготовлю материалы на основе твоей натальной карты, а не выдам универсальный набор практик.</p>
+        <!-- ЗАМЕНИ ссылку на свой Telegram -->
+        <a class="cta" href="https://t.me/" target="_blank" rel="noopener noreferrer">Обсудить участие в Telegram ↗</a>
+        <p class="fineprint">LILITH — инструмент самопознания и личной практики. Результаты индивидуальны и зависят от опыта и участия человека.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <div class="gold" style="letter-spacing:.2em">LILITH</div>
+      <div>Персональное погружение в свой теневой архетип</div>
+      <div style="margin-top:10px">© <span id="year"></span> LILITH</div>
+    </div>
+  </footer>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
