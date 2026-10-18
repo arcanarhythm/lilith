@@ -3,70 +3,163 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LILITH — Персональное погружение</title>
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts -->
+    <title>LILITH — Индивидуальная трансформация</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
     <style>
         :root {
-            --color-wine: #800020;
-            --color-wine-bright: #a80e2e;
-            --color-dark-bg: #090506;
+            --bg-color: #080506;
+            --accent-burgundy: #800020;
+            --accent-glow: #a81c3b;
+            --text-main: #e8e3e3;
+            --text-muted: #a39899;
+            --gold-accent: #c5a059;
+            --font-title: 'Cinzel', serif;
+            --font-body: 'Montserrat', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
         }
 
         body {
-            font-family: 'Montserrat', sans-serif;
-            background-color: var(--color-dark-bg);
-            color: #e5e5e5;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: var(--font-body);
             overflow-x: hidden;
+            line-height: 1.6;
         }
 
-        .font-serif-custom {
-            font-family: 'Cormorant Garamond', serif;
+        /* Container for mobile frame feel */
+        .page-wrapper {
+            max-width: 480px;
+            margin: 0 auto;
+            min-height: 100vh;
+            background-color: #0d080a;
+            position: relative;
+            box-shadow: 0 0 50px rgba(0,0,0,0.9);
         }
 
-        .text-wine {
-            color: var(--color-wine);
+        /* Section 1: Hero Header */
+        .hero-section {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 40px 24px 60px;
+            background: linear-gradient(180deg, rgba(8,5,6,0.2) 0%, rgba(8,5,6,0.85) 75%, #080506 100%),
+                        url('1000549416_a353b5.png') center/cover no-repeat;
         }
 
-        .text-wine-bright {
-            color: var(--color-wine-bright);
+        .hero-title {
+            font-family: var(--font-title);
+            font-size: 3rem;
+            letter-spacing: 0.15em;
+            text-align: center;
+            color: #ffffff;
+            text-shadow: 0 0 20px rgba(128,0,32,0.6);
+            margin-bottom: 24px;
         }
 
-        /* Stories Progress Bar */
-        .progress-bar-bg {
-            background: rgba(255, 255, 255, 0.2);
-        }
-        
-        .progress-bar-fill {
-            background: #ffffff;
-            width: 0%;
-            transition: width 0.1s linear;
+        .hero-subtitle {
+            font-family: var(--font-title);
+            font-size: 1.1rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--text-main);
+            text-align: center;
+            margin-bottom: 16px;
+            line-height: 1.4;
         }
 
-        .progress-bar-fill.active {
+        .hero-text {
+            font-size: 0.95rem;
+            font-weight: 300;
+            color: var(--text-muted);
+            text-align: center;
+            line-height: 1.7;
+            margin-bottom: 30px;
+        }
+
+        .symbol-marker {
+            text-align: center;
+            color: var(--accent-burgundy);
+            font-size: 1.2rem;
+            margin: 10px 0;
+            text-shadow: 0 0 10px var(--accent-burgundy);
+        }
+
+        /* Section 2: About Project */
+        .about-section {
+            position: relative;
+            padding: 60px 24px;
+            background: linear-gradient(180deg, #080506 0%, rgba(13,8,10,0.9) 50%, #080506 100%),
+                        url('1000549417_a353b5.png') center/cover no-repeat;
+            min-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .section-title {
+            font-family: var(--font-title);
+            font-size: 1.4rem;
+            letter-spacing: 0.1em;
+            color: #ffffff;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .about-text {
+            font-size: 0.95rem;
+            font-weight: 300;
+            color: var(--text-main);
+            margin-bottom: 20px;
+            text-align: center;
+            line-height: 1.8;
+        }
+
+        .quote-highlight {
+            font-style: italic;
+            color: #e5989b;
+            font-weight: 300;
+            text-align: center;
+            margin-top: 25px;
+            font-size: 1rem;
+            letter-spacing: 0.02em;
+        }
+
+        /* Section 3: Stories Slider Section */
+        .stories-container {
+            position: relative;
+            height: 100vh;
             width: 100%;
+            overflow: hidden;
+            background-color: #000000;
         }
 
-        .progress-bar-fill.completed {
-            width: 100%;
-            transition: none;
-        }
-
-        /* Smooth Story Transition */
         .story-slide {
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.4s ease-in-out, visibility 0.4s ease-in-out;
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 30px 24px 50px;
         }
 
         .story-slide.active {
@@ -74,418 +167,521 @@
             visibility: visible;
         }
 
-        /* Glassmorphism Cards */
-        .glass-card {
-            background: rgba(18, 10, 13, 0.75);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(128, 0, 32, 0.3);
+        .story-slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(180deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.2) 40%, rgba(0,0,0,0.85) 100%);
+            z-index: 1;
         }
 
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 6px;
+        /* Progress Bars */
+        .story-header {
+            position: relative;
+            z-index: 2;
+            width: 100%;
         }
-        ::-webkit-scrollbar-track {
-            background: #090506;
+
+        .progress-bars {
+            display: flex;
+            gap: 6px;
+            margin-bottom: 15px;
         }
-        ::-webkit-scrollbar-thumb {
-            background: #400a14;
-            border-radius: 3px;
+
+        .progress-bar {
+            flex: 1;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.25);
+            border-radius: 2px;
+            overflow: hidden;
         }
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--color-wine);
+
+        .progress-fill {
+            height: 100%;
+            width: 0%;
+            background-color: #ffffff;
+            transition: width 0.1s linear;
+        }
+
+        .story-slide.active .progress-fill {
+            width: 100%;
+        }
+
+        .story-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--accent-burgundy);
+            font-family: var(--font-title);
+            font-size: 0.9rem;
+            letter-spacing: 0.1em;
+        }
+
+        .story-content {
+            position: relative;
+            z-index: 2;
+            margin-top: auto;
+        }
+
+        .story-number {
+            color: var(--accent-burgundy);
+            font-family: var(--font-title);
+            font-size: 0.9rem;
+            letter-spacing: 0.15em;
+            margin-bottom: 8px;
+        }
+
+        .story-item-title {
+            font-family: var(--font-title);
+            font-size: 1.5rem;
+            letter-spacing: 0.08em;
+            color: #ffffff;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            line-height: 1.3;
+        }
+
+        .story-tag {
+            display: inline-block;
+            font-size: 0.8rem;
+            color: #e5989b;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 16px;
+        }
+
+        .story-desc {
+            font-size: 0.9rem;
+            font-weight: 300;
+            color: var(--text-main);
+            line-height: 1.7;
+        }
+
+        /* Touch Navigation Tap Zones */
+        .tap-zone {
+            position: absolute;
+            top: 60px;
+            bottom: 0;
+            width: 50%;
+            z-index: 10;
+        }
+        .tap-left { left: 0; }
+        .tap-right { right: 0; }
+
+        /* Slide Specific Backgrounds */
+        .slide-1 { background-image: url('1000549423_a353b5.png'); }
+        .slide-2 { background-image: url('1000549426_a353b5.png'); }
+        .slide-3 { background-image: url('1000549420_a353b5.png'); }
+        .slide-4 { background-image: url('1000549433_a353b5.png'); }
+
+        /* Section 4: Final Pricing & Timer */
+        .final-section {
+            position: relative;
+            padding: 80px 24px 60px;
+            background: linear-gradient(180deg, #000000 0%, rgba(8,5,6,0.85) 30%, rgba(8,5,6,0.92) 100%),
+                        url('1000549429_a353b5.png') center/cover no-repeat;
+            text-align: center;
+        }
+
+        .final-quote {
+            font-style: italic;
+            font-size: 1.1rem;
+            color: var(--text-main);
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .price-card {
+            background: rgba(13, 8, 10, 0.75);
+            border: 1px solid rgba(128, 0, 32, 0.3);
+            backdrop-filter: blur(8px);
+            padding: 35px 20px;
+            margin-bottom: 30px;
+        }
+
+        .price-label {
+            font-family: var(--font-title);
+            font-size: 0.9rem;
+            letter-spacing: 0.15em;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .price-old {
+            font-size: 1.2rem;
+            text-decoration: line-through;
+            color: #776a6c;
+            margin-bottom: 6px;
+        }
+
+        .price-current {
+            font-family: var(--font-title);
+            font-size: 2.2rem;
+            color: #ffffff;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-shadow: 0 0 15px rgba(128, 0, 32, 0.8);
+            margin-bottom: 25px;
+        }
+
+        .timer-title {
+            font-size: 0.8rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+        }
+
+        .timer-display {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .timer-unit {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .timer-val {
+            font-family: var(--font-title);
+            font-size: 1.6rem;
+            color: #ffffff;
+            background: rgba(8, 5, 6, 0.8);
+            border: 1px solid rgba(128, 0, 32, 0.4);
+            padding: 6px 12px;
+            min-width: 50px;
+        }
+
+        .timer-lbl {
+            font-size: 0.65rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            margin-top: 4px;
+        }
+
+        .rub-note {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-top: 15px;
+            font-weight: 300;
+        }
+
+        .btn-cta {
+            display: block;
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, var(--accent-burgundy) 0%, var(--accent-glow) 100%);
+            color: #ffffff;
+            font-family: var(--font-title);
+            font-size: 1rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 0 25px rgba(128, 0, 32, 0.5);
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .btn-cta:active {
+            transform: scale(0.98);
+        }
+
+        .footer-note {
+            font-size: 0.7rem;
+            color: #554a4c;
+            margin-top: 40px;
+            letter-spacing: 0.05em;
         }
     </style>
 </head>
-<body class="bg-[#090506] text-gray-200 antialiased selection:bg-[#800020] selection:text-white">
+<body>
 
-    <!-- 1. HERO SECTION (Заглавная) -->
-    <section class="relative min-h-screen flex flex-col justify-end p-6 md:p-12 overflow-hidden">
-        <!-- Background Image -->
-        <div class="absolute inset-0 z-0">
-            <img src="1000549416_a353b5.png" alt="LILITH Hero Image" class="w-full h-full object-cover object-center">
-            <div class="absolute inset-0 bg-gradient-to-t from-[#090506] via-[#090506]/40 to-transparent"></div>
-            <div class="absolute inset-0 bg-black/20"></div>
+<div class="page-wrapper">
+
+    <!-- Section 1: Hero -->
+    <section class="hero-section">
+        <h1 class="hero-title">LILITH</h1>
+        <div class="symbol-marker">✦</div>
+        <h2 class="hero-subtitle">Ты чувствуешь свой потенциал.<br>Но можешь ли ты его прожить?</h2>
+        <p class="hero-text">
+            Знаешь, что ты достойна лучшего. Лучших отношений. Более мощной реализации. Власти, любви, свободы. 
+            <br><br>
+            Ты можешь знать, читать про себя разборы, говорить «Да, это я». Но где это всё? Наступит когда-то потом?
+        </p>
+        <div class="symbol-marker">🌙</div>
+    </section>
+
+    <!-- Section 2: About Project -->
+    <section class="about-section">
+        <h2 class="section-title">Ты уже свободна</h2>
+        <p class="about-text">
+            Есть часть тебя, которая знает, как это сделать. Тебе нужно просто прожить это — осознать телом, как это реально ощущается.
+        </p>
+        <p class="quote-highlight">
+            Ведь лучше 1 раз почувствовать, чем 100 раз почитать.
+        </p>
+        <div class="symbol-marker" style="margin-top: 30px;">✦</div>
+        <p class="about-text" style="font-size: 0.85rem; color: var(--text-muted); margin-top: 15px;">
+            Это не готовый проект для всех. Это индивидуальная распаковка и написание практик лично под твой уникальный архетип.
+        </p>
+    </section>
+
+    <!-- Section 3: Stories Slider -->
+    <section class="stories-container" id="storiesSection">
+        <div class="tap-zone tap-left" id="tapLeft"></div>
+        <div class="tap-zone tap-right" id="tapRight"></div>
+
+        <!-- Slide 1 -->
+        <div class="story-slide slide-1 active" data-index="0">
+            <div class="story-header">
+                <div class="progress-bars">
+                    <div class="progress-bar"><div class="progress-fill"></div></div>
+                    <div class="progress-bar"><div class="progress-fill"></div></div>
+                    <div class="progress-bar"><div class="progress-fill"></div></div>
+                    <div class="progress-bar"><div class="progress-fill"></div></div>
+                </div>
+                <div class="story-meta">
+                    <span>LILITH</span>
+                    <span>🌙</span>
+                </div>
+            </div>
+            <div class="story-content">
+                <div class="story-number">01 / 04</div>
+                <h3 class="story-item-title">Знакомство с Лилит</h3>
+                <span class="story-tag">Аудио-практика</span>
+                <p class="story-desc">
+                    Я изучу характер твоего теневого архетипа Лилит по знаку, дому и управителю, напишу рассказ от её имени. А ты послушаешь и проживёшь это телом.
+                </p>
+            </div>
         </div>
 
-        <!-- Content -->
-        <div class="relative z-10 max-w-2xl my-auto pt-20 pb-12">
-            <h1 class="font-serif-custom text-6xl md:text-8xl tracking-wider font-bold text-white mb-4 drop-shadow-md">
-                LILITH
-            </h1>
-            <p class="font-serif-custom text-2xl md:text-3xl text-gray-200 italic mb-6 leading-relaxed">
-                Ты уже можешь больше.<br>
-                Так почему ты это не проживаешь?
-            </p>
-            <p class="text-sm md:text-base text-gray-300 font-light max-w-lg mb-8 leading-relaxed">
-                Персональное погружение в твой теневой архетип через астрологию и тело.
-            </p>
-            
-            <div class="flex items-center space-x-2 text-wine font-serif-custom text-xl">
-                <span>✦</span>
-                <span class="text-xs uppercase tracking-[0.2em] text-gray-400 font-sans">Листайте вниз для погружения</span>
+        <!-- Slide 2 -->
+        <div class="story-slide slide-2" data-index="1">
+            <div class="story-header">
+                <div class="progress-bars">
+                    <div class="progress-bar"><div class="progress-fill"></div></div>
+                    <div class="progress-bar"><div class="progress-fill"></div></div>
+                    <div class="progress-bar"><div class="progress-fill"></div></div>
+                    <div class="progress-bar"><div class="progress-fill"></div></div>
+                </div>
+                <div class="story-meta">
+                    <span>LILITH</span>
+                    <span>🌙</span>
+                </div>
+            </div>
+            <div class="story-content">
+                <div class="story-number">02 / 04</div>
+                <h3 class="story-item-title">Голод и Удовольствие</h3>
+                <span class="story-tag">Телесная аудио-практика</span>
+                <p class="story-desc">
+                    У каждой Лилит есть свои потребности. Ты привыкла прятать этот голод. В практике ты его почувствуешь, утолишь и научишься его замечать. Это будет приятно и мощно.
+                </p>
+            </div>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="story-slide slide-3" data-index="2">
+            <div class="story-header">
+                <div class="progress-bars">
+                    <div class="progress-bar"><div class="progress-fill"></div></div>
+                    <div class="progress-bar"><div class="progress-fill"></div></div>
+                    <div class="progress-bar"><div class="progress-fill"></div></div>
+                    <div class="progress-bar"><div class="progress-fill"></div></div>
+                </div>
+                <div class="story-meta">
+                    <span>LILITH</span>
+                    <span>🌙</span>
+                </div>
+            </div>
+            <div class="story-content">
+                <div class="story-number">03 / 04</div>
+                <h3 class="story-item-title">Точки Искушения</h3>
+                <span class="story-tag">Тест и задания</span>
+                <p class="story-desc">
+                    Где ты проживаешь Лилит в негативе и тормозишь её плюсовые проявления. Ведь когда ты её гасишь — она пытается достучаться всеми возможными способами.
+                </p>
+            </div>
+        </div>
+
+        <!-- Slide 4 -->
+        <div class="story-slide slide-4" data-index="3">
+            <div class="story-header">
+                <div class="progress-bars">
+                    <div class="progress-bar"><div class="progress-fill"></div></div>
+                    <div class="progress-bar"><div class="progress-fill"></div></div>
+                    <div class="progress-bar"><div class="progress-fill"></div></div>
+                    <div class="progress-bar"><div class="progress-fill"></div></div>
+                </div>
+                <div class="story-meta">
+                    <span>LILITH</span>
+                    <span>🌙</span>
+                </div>
+            </div>
+            <div class="story-content">
+                <div class="story-number">04 / 04</div>
+                <h3 class="story-item-title">Reborn: Я Магнит</h3>
+                <span class="story-tag">Практика-настройка + Задания</span>
+                <p class="story-desc">
+                    У каждой Лилит внутренний конфликт: страсть быть собой против страха быть непринятой. Практика поможет настроиться на свои энергии и стать магнитом для своих людей.
+                </p>
             </div>
         </div>
     </section>
 
-    <!-- 2. О ПРОЕКТЕ -->
-    <section class="relative min-h-screen flex items-center justify-center p-6 md:p-12 overflow-hidden bg-[#090506]">
-        <!-- Background Image -->
-        <div class="absolute inset-0 z-0">
-            <img src="1000549417_a353b5.png" alt="О проекте LILITH" class="w-full h-full object-cover object-center opacity-40">
-            <div class="absolute inset-0 bg-gradient-to-b from-[#090506] via-transparent to-[#090506]"></div>
+    <!-- Section 4: Pricing & Final CTA -->
+    <section class="final-section">
+        <p class="final-quote">
+            «Ведь лучше 1 раз прожить, чем 100 раз почитать»
+        </p>
+
+        <div class="price-card">
+            <div class="price-label">Стоимость</div>
+            <div class="price-old">44 000 ₸</div>
+            <div class="price-current">24 000 ₸</div>
+
+            <div class="timer-title">Скидка действует ещё:</div>
+            <div class="timer-display" id="countdown">
+                <div class="timer-unit">
+                    <span class="timer-val" id="days">07</span>
+                    <span class="timer-lbl">дней</span>
+                </div>
+                <div class="timer-unit">
+                    <span class="timer-val" id="hours">00</span>
+                    <span class="timer-lbl">часов</span>
+                </div>
+                <div class="timer-unit">
+                    <span class="timer-val" id="minutes">00</span>
+                    <span class="timer-lbl">минут</span>
+                </div>
+                <div class="timer-unit">
+                    <span class="timer-val" id="seconds">00</span>
+                    <span class="timer-lbl">секунд</span>
+                </div>
+            </div>
+
+            <a href="https://t.me/" class="btn-cta">Занять место</a>
+            <div class="rub-note">доступна оплата в рублях</div>
         </div>
 
-        <!-- Content Box -->
-        <div class="relative z-10 max-w-xl glass-card p-8 md:p-12 rounded-2xl shadow-2xl my-12 border border-wine/20">
-            <div class="text-center mb-8">
-                <span class="text-wine text-2xl">✦</span>
-                <h2 class="font-serif-custom text-3xl md:text-4xl text-white tracking-widest uppercase mt-2">О проекте</h2>
-            </div>
-
-            <div class="space-y-6 text-sm md:text-base text-gray-300 font-light leading-relaxed">
-                <p>
-                    Ты чувствуешь свой потенциал. Знаешь, что достойна лучшего. Лучших отношений. Более мощной реализации. Власти, любви, свободы.
-                </p>
-                <p>
-                    Ты можешь читать, говорить «Да, это я». Но где это всё в твоей жизни?
-                </p>
-                <p>
-                    Ты уже свободна. Есть часть тебя, которая знает, как это сделать. Тебе нужно просто прожить это: осознать телом, как это реально ощущается.
-                </p>
-                <p class="font-serif-custom text-lg md:text-xl text-wine-bright italic pt-2">
-                    Ведь лучше 1 раз почувствовать, чем 100 раз прочитать.
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- 3. STORIES SLIDER SECTION (Четыре этапа) -->
-    <section id="stories-section" class="min-h-screen py-12 flex flex-col justify-center items-center bg-[#090506] px-4">
-        
-        <div class="text-center mb-6">
-            <h2 class="font-serif-custom text-3xl md:text-5xl text-white tracking-widest uppercase mb-2">
-                Твоя Лилит. Твои Правила.
-            </h2>
-            <p class="text-xs md:text-sm text-gray-400 font-light uppercase tracking-widest">
-                Четыре этапа. Ты и твоя Лилит.
-            </p>
-        </div>
-
-        <!-- Phone Frame Container -->
-        <div class="relative w-full max-w-[390px] h-[680px] rounded-[32px] overflow-hidden shadow-[0_0_50px_rgba(128,0,32,0.3)] border border-neutral-800 bg-black">
-            
-            <!-- Progress Bars Top -->
-            <div class="absolute top-4 left-0 right-0 z-30 px-4 flex space-x-1.5">
-                <div class="h-1 flex-1 progress-bar-bg rounded-full overflow-hidden">
-                    <div id="pbar-0" class="h-full progress-bar-fill"></div>
-                </div>
-                <div class="h-1 flex-1 progress-bar-bg rounded-full overflow-hidden">
-                    <div id="pbar-1" class="h-full progress-bar-fill"></div>
-                </div>
-                <div class="h-1 flex-1 progress-bar-bg rounded-full overflow-hidden">
-                    <div id="pbar-2" class="h-full progress-bar-fill"></div>
-                </div>
-                <div class="h-1 flex-1 progress-bar-bg rounded-full overflow-hidden">
-                    <div id="pbar-3" class="h-full progress-bar-fill"></div>
-                </div>
-            </div>
-
-            <!-- Slide Counter Display -->
-            <div class="absolute top-8 left-4 z-30 flex items-center space-x-1 text-xs text-gray-300 font-medium tracking-widest">
-                <span id="current-slide-num">01</span><span>/</span><span>04</span>
-            </div>
-
-            <!-- Tap Controls (Left / Right) -->
-            <div class="absolute inset-0 z-20 flex">
-                <div id="tap-left" class="w-1/3 h-full cursor-pointer"></div>
-                <div id="tap-right" class="w-2/3 h-full cursor-pointer"></div>
-            </div>
-
-            <!-- STORIES SLIDES -->
-            <div id="slides-container" class="relative w-full h-full">
-                
-                <!-- Slide 1 -->
-                <div class="story-slide active">
-                    <img src="1000549423_a353b5.png" alt="Знакомство с Лилит" class="w-full h-full object-cover">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
-                    <div class="absolute bottom-0 left-0 right-0 p-6 z-10 text-left">
-                        <div class="text-wine text-lg mb-1">🌙</div>
-                        <span class="text-xs text-wine-bright uppercase tracking-widest font-semibold">01 / 04</span>
-                        <h3 class="font-serif-custom text-2xl text-white mb-2 font-bold">ЗНАКОМСТВО С ЛИЛИТ</h3>
-                        <p class="text-xs text-wine-bright font-medium mb-3 uppercase tracking-wider">Аудиопрактика</p>
-                        <p class="text-xs text-gray-300 font-light leading-relaxed">
-                            Я изучу твою Лилит по знаку, дому и управлителю, напишу рассказ от её имени. Ты услышишь голос той части себя, которую привыкла не замечать, и сможешь исследовать её через собственные ощущения.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Slide 2 -->
-                <div class="story-slide">
-                    <img src="1000549426_a353b5.png" alt="Голод и удовольствие" class="w-full h-full object-cover">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
-                    <div class="absolute bottom-0 left-0 right-0 p-6 z-10 text-left">
-                        <div class="text-wine text-lg mb-1">🌙</div>
-                        <span class="text-xs text-wine-bright uppercase tracking-widest font-semibold">02 / 04</span>
-                        <h3 class="font-serif-custom text-2xl text-white mb-2 font-bold">ГОЛОД И УДОВОЛЬСТВИЕ</h3>
-                        <p class="text-xs text-wine-bright font-medium mb-3 uppercase tracking-wider">Телесная практика</p>
-                        <p class="text-xs text-gray-300 font-light leading-relaxed">
-                            Узнаешь, где твоя сила блокируется: в теле, эмоциях, проявленности. Выполнишь практику, чтобы разблокировать эту энергию и позволить себе то, в чём отказывала.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Slide 3 -->
-                <div class="story-slide">
-                    <img src="1000549420_a353b5.png" alt="Точки искушения" class="w-full h-full object-cover">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
-                    <div class="absolute bottom-0 left-0 right-0 p-6 z-10 text-left">
-                        <div class="text-wine text-lg mb-1">🌙</div>
-                        <span class="text-xs text-wine-bright uppercase tracking-widest font-semibold">03 / 04</span>
-                        <h3 class="font-serif-custom text-2xl text-white mb-2 font-bold">ТОЧКИ ИСКУШЕНИЯ</h3>
-                        <p class="text-xs text-wine-bright font-medium mb-3 uppercase tracking-wider">Телесно-эмоциональный разбор</p>
-                        <p class="text-xs text-gray-300 font-light leading-relaxed">
-                            Определим твои триггеры, страхи и запретные желания. Поймёшь, как превратить их из уязвимости в источник твоей личной магнитной силы.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Slide 4 -->
-                <div class="story-slide">
-                    <img src="1000549433_a353b5.png" alt="Я — Магнит" class="w-full h-full object-cover">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
-                    <div class="absolute bottom-0 left-0 right-0 p-6 z-10 text-left">
-                        <div class="text-wine text-lg mb-1">🌙</div>
-                        <span class="text-xs text-wine-bright uppercase tracking-widest font-semibold">04 / 04</span>
-                        <h3 class="font-serif-custom text-2xl text-white mb-2 font-bold">Я — МАГНИТ</h3>
-                        <p class="text-xs text-wine-bright font-medium mb-3 uppercase tracking-wider">Интеграция архетипа</p>
-                        <p class="text-xs text-gray-300 font-light leading-relaxed">
-                            Соединение астрального разбора и телесного опыта в единую систему. Ты заберёшь инструмент, который станет твоей естественной проявленностью.
-                        </p>
-                    </div>
-                </div>
-
-            </div>
+        <div class="footer-note">
+            © LILITH PROJECT. ALL RIGHTS RESERVED.
         </div>
     </section>
 
-    <!-- 4. ФИНАЛЬНАЯ СЕКЦИЯ (ЦЕНА, ТАЙМЕР, КНОПКА) -->
-    <section class="relative min-h-screen flex flex-col justify-center items-center p-6 md:p-12 overflow-hidden bg-[#090506]">
-        <!-- Background Image with Overlay -->
-        <div class="absolute inset-0 z-0">
-            <img src="1000549429_a353b5.png" alt="LILITH Final Background" class="w-full h-full object-cover object-center">
-            <!-- Dark Overlay Gradient -->
-            <div class="absolute inset-0 bg-gradient-to-t from-[#090506] via-[#090506]/80 to-[#090506]/60"></div>
-        </div>
+</div>
 
-        <div class="relative z-10 max-w-lg w-full glass-card p-8 md:p-10 rounded-2xl text-center border border-wine/30 my-auto shadow-2xl">
-            
-            <div class="text-wine text-3xl mb-2">✦</div>
-            <h2 class="font-serif-custom text-3xl md:text-4xl text-white font-bold tracking-wider mb-2">
-                Твое Погружение
-            </h2>
-            <p class="text-xs text-gray-400 font-light uppercase tracking-widest mb-6">
-                Прими свою теневую силу
-            </p>
+<script>
+    // Stories logic
+    const slides = document.querySelectorAll('.story-slide');
+    let currentIndex = 0;
+    let storyInterval = null;
+    let isSliderActive = false;
+    const slideDuration = 6000;
 
-            <!-- Price Container -->
-            <div class="mb-8 p-4 rounded-xl bg-black/40 border border-white/5 inline-block w-full max-w-xs">
-                <span class="text-xs uppercase tracking-widest text-gray-400 block mb-2">Стоимость</span>
-                
-                <div class="flex flex-col items-center justify-center space-y-1">
-                    <!-- Strikethrough Price (Top) -->
-                    <span class="text-gray-500 line-through text-lg font-light">44 000 ₸</span>
-                    <!-- Current Price (Bottom) -->
-                    <span class="font-serif-custom text-4xl text-white font-bold tracking-tight">24 000 ₸</span>
-                </div>
-            </div>
-
-            <!-- Countdown Timer -->
-            <div class="mb-8">
-                <p class="text-xs text-gray-400 uppercase tracking-widest mb-3">Скидка действует ещё:</p>
-                <div class="grid grid-cols-4 gap-2 text-center max-w-xs mx-auto">
-                    <div class="bg-black/50 p-2 rounded-lg border border-white/10">
-                        <span id="timer-days" class="font-serif-custom text-2xl text-white font-bold block">07</span>
-                        <span class="text-[10px] text-gray-400 uppercase">дней</span>
-                    </div>
-                    <div class="bg-black/50 p-2 rounded-lg border border-white/10">
-                        <span id="timer-hours" class="font-serif-custom text-2xl text-white font-bold block">00</span>
-                        <span class="text-[10px] text-gray-400 uppercase">часов</span>
-                    </div>
-                    <div class="bg-black/50 p-2 rounded-lg border border-white/10">
-                        <span id="timer-minutes" class="font-serif-custom text-2xl text-white font-bold block">00</span>
-                        <span class="text-[10px] text-gray-400 uppercase">минут</span>
-                    </div>
-                    <div class="bg-black/50 p-2 rounded-lg border border-white/10">
-                        <span id="timer-seconds" class="font-serif-custom text-2xl text-white font-bold block">00</span>
-                        <span class="text-[10px] text-gray-400 uppercase">секунд</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- CTA Button -->
-            <a href="https://t.me/" target="_blank" class="block w-full py-4 px-6 rounded-xl bg-gradient-to-r from-[#800020] to-[#a80e2e] text-white font-medium text-sm tracking-widest uppercase shadow-lg shadow-wine/40 hover:shadow-wine/60 hover:scale-[1.02] transition-all duration-300">
-                Зайти в Погружение
-            </a>
-
-        </div>
-
-        <footer class="relative z-10 mt-8 text-center text-xs text-gray-600 font-light">
-            © LILITH. Все права защищены.
-        </footer>
-    </section>
-
-    <!-- JAVASCRIPT LOGIC -->
-    <script>
-        // STORIES SLIDER LOGIC
-        const TOTAL_SLIDES = 4;
-        const SLIDE_DURATION = 5000; // 5 seconds per slide
-        let currentSlide = 0;
-        let slideTimer = null;
-        let progressInterval = null;
-        let progressStart = 0;
-        let isStoriesVisible = false;
-
-        const slides = document.querySelectorAll('.story-slide');
-        const numDisplay = document.getElementById('current-slide-num');
-
-        function updateSlide(index) {
-            slides.forEach((slide, i) => {
-                if (i === index) {
-                    slide.classList.add('active');
+    function showSlide(index) {
+        slides.forEach((slide, idx) => {
+            slide.classList.remove('active');
+            const fills = slide.querySelectorAll('.progress-fill');
+            fills.forEach((fill, fIdx) => {
+                if (fIdx < index) {
+                    fill.style.width = '100%';
+                } else if (fIdx === index) {
+                    fill.style.width = '0%';
                 } else {
-                    slide.classList.remove('active');
+                    fill.style.width = '0%';
                 }
             });
-
-            numDisplay.textContent = String(index + 1).padStart(2, '0');
-
-            // Update progress bars state
-            for (let i = 0; i < TOTAL_SLIDES; i++) {
-                const pbar = document.getElementById(`pbar-${i}`);
-                pbar.classList.remove('active', 'completed');
-                if (i < index) {
-                    pbar.classList.add('completed');
-                } else if (i === index) {
-                    pbar.style.width = '0%';
-                } else {
-                    pbar.style.width = '0%';
-                }
-            }
-
-            startProgress(index);
-        }
-
-        function startProgress(index) {
-            clearInterval(progressInterval);
-            clearTimeout(slideTimer);
-
-            if (!isStoriesVisible) return;
-
-            const pbar = document.getElementById(`pbar-${index}`);
-            let width = 0;
-            const step = 100 / (SLIDE_DURATION / 100);
-
-            progressInterval = setInterval(() => {
-                width += step;
-                if (width >= 100) {
-                    width = 100;
-                    clearInterval(progressInterval);
-                }
-                pbar.style.width = width + '%';
-            }, 100);
-
-            slideTimer = setTimeout(() => {
-                nextSlide();
-            }, SLIDE_DURATION);
-        }
-
-        function nextSlide() {
-            if (currentSlide < TOTAL_SLIDES - 1) {
-                currentSlide++;
-                updateSlide(currentSlide);
-            } else {
-                currentSlide = 0;
-                updateSlide(currentSlide);
-            }
-        }
-
-        function prevSlide() {
-            if (currentSlide > 0) {
-                currentSlide--;
-                updateSlide(currentSlide);
-            } else {
-                currentSlide = 0;
-                updateSlide(currentSlide);
-            }
-        }
-
-        // Tap Controls
-        document.getElementById('tap-right').addEventListener('click', () => {
-            nextSlide();
         });
 
-        document.getElementById('tap-left').addEventListener('click', () => {
-            prevSlide();
-        });
+        slides[index].classList.add('active');
+        currentIndex = index;
+    }
 
-        // Intersection Observer: Only start stories slider when visible
-        const storiesSection = document.getElementById('stories-section');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    if (!isStoriesVisible) {
-                        isStoriesVisible = true;
-                        updateSlide(currentSlide);
-                    }
-                } else {
-                    isStoriesVisible = false;
-                    clearInterval(progressInterval);
-                    clearTimeout(slideTimer);
-                }
-            });
-        }, { threshold: 0.4 });
-
-        observer.observe(storiesSection);
-
-        // 7-DAY COUNTDOWN TIMER LOGIC
-        const COUNTDOWN_KEY = 'lilith_timer_end';
-        let endTime = localStorage.getItem(COUNTDOWN_KEY);
-
-        if (!endTime) {
-            // Set end time 7 days from now
-            endTime = new Date().getTime() + (7 * 24 * 60 * 60 * 1000);
-            localStorage.setItem(COUNTDOWN_KEY, endTime);
+    function nextSlide() {
+        if (currentIndex < slides.length - 1) {
+            showSlide(currentIndex + 1);
         } else {
-            endTime = parseInt(endTime, 10);
+            showSlide(0);
         }
+    }
 
-        function updateTimer() {
-            const now = new Date().getTime();
-            const distance = endTime - now;
+    function prevSlide() {
+        if (currentIndex > 0) {
+            showSlide(currentIndex - 1);
+        } else {
+            showSlide(slides.length - 1);
+        }
+    }
 
-            if (distance < 0) {
-                // Reset to new 7 days if expired
-                const newEndTime = new Date().getTime() + (7 * 24 * 60 * 60 * 1000);
-                localStorage.setItem(COUNTDOWN_KEY, newEndTime);
-                endTime = newEndTime;
-                return;
+    function startSlider() {
+        if (!isSliderActive) {
+            isSliderActive = true;
+            storyInterval = setInterval(nextSlide, slideDuration);
+        }
+    }
+
+    document.getElementById('tapRight').addEventListener('click', () => {
+        clearInterval(storyInterval);
+        nextSlide();
+        storyInterval = setInterval(nextSlide, slideDuration);
+    });
+
+    document.getElementById('tapLeft').addEventListener('click', () => {
+        clearInterval(storyInterval);
+        prevSlide();
+        storyInterval = setInterval(nextSlide, slideDuration);
+    });
+
+    // Start auto-switch only when user reaches stories section
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                startSlider();
             }
+        });
+    }, { threshold: 0.3 });
 
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    observer.observe(document.getElementById('storiesSection'));
 
-            document.getElementById('timer-days').textContent = String(days).padStart(2, '0');
-            document.getElementById('timer-hours').textContent = String(hours).padStart(2, '0');
-            document.getElementById('timer-minutes').textContent = String(minutes).padStart(2, '0');
-            document.getElementById('timer-seconds').textContent = String(seconds).padStart(2, '0');
+    // Countdown Timer (7 Days from first visit)
+    let targetTime = localStorage.getItem('lilith_target_time');
+    if (!targetTime) {
+        targetTime = new Date().getTime() + (7 * 24 * 60 * 60 * 1000);
+        localStorage.setItem('lilith_target_time', targetTime);
+    }
+
+    function updateTimer() {
+        const now = new Date().getTime();
+        const distance = targetTime - now;
+
+        if (distance < 0) {
+            document.getElementById('countdown').innerHTML = '<div style="color:var(--text-muted)">Срок акции истек</div>';
+            return;
         }
 
-        setInterval(updateTimer, 1000);
-        updateTimer();
-    </script>
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        document.getElementById('days').innerText = String(days).padStart(2, '0');
+        document.getElementById('hours').innerText = String(hours).padStart(2, '0');
+        document.getElementById('minutes').innerText = String(minutes).padStart(2, '0');
+        document.getElementById('seconds').innerText = String(seconds).padStart(2, '0');
+    }
+
+    setInterval(updateTimer, 1000);
+    updateTimer();
+</script>
+
 </body>
 </html>
