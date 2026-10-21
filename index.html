@@ -411,6 +411,7 @@
         <h1 class="hero-title">LILITH</h1>
       <!--   <div class="symbol-marker">✦</div> -->
         <h2 class="hero-subtitle">Ты уже свободна.<br>Пора это почувствовать</h2>
+        <a href="https://t.me/arcanabeat" class="btn-cta">Пробудить свою силу>
      <!--   <p class="hero-text">
             Хватит читать про свой потенциал
             <br><br>
@@ -569,7 +570,7 @@
                 </div>
             </div>
 
-            <a href="https://t.me/" class="btn-cta">Занять место</a>
+            <a href="https://t.me/arcanabeat" class="btn-cta">Раскрыть мою Лилит</a>
             <div class="rub-note">доступна оплата в рублях</div>
         </div>
 
@@ -654,11 +655,8 @@
     observer.observe(document.getElementById('storiesSection'));
 
     // Countdown Timer (7 Days from first visit)
-    let targetTime = localStorage.getItem('lilith_target_time');
-    if (!targetTime) {
-        targetTime = new Date().getTime() + (7 * 24 * 60 * 60 * 1000);
-        localStorage.setItem('lilith_target_time', targetTime);
-    }
+    // Задаём единую фиксированную дату окончания акции для ВСЕХ
+    const targetTime = new Date('2026-10-28T23:59:59').getTime();
 
     function updateTimer() {
         const now = new Date().getTime();
